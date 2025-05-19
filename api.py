@@ -536,6 +536,13 @@ def main():
                 'error': 'Por favor proporcione un NIC en la URL. Ejemplo: ?nic=7998567',
                 'debug_logs': debug_logs
             })
+            
+        # Validar que el NIC contenga solo números
+        if not nic.isdigit():
+            return jsonify({
+                'error': 'El NIC debe contener solo números',
+                'debug_logs': debug_logs
+            })
         
         add_log(f"Iniciando consulta para NIC: {nic} desde IP: {ip}")
         resultado = consultar_factura(nic, 0, ip)
